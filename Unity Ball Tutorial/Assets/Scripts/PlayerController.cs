@@ -12,11 +12,14 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     private int scoreCount;
 
+    float moveh;
+    float moveV;
+    Vector3 movement = new Vector3(moveH, 0.0f, moveV);
 
-    
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 
         rb = GetComponent<Rigidbody>();
 
@@ -30,9 +33,8 @@ public class PlayerController : MonoBehaviour {
         float moveH = Input.GetAxis("Horizontal");
         float moveV = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3 (moveH,0.0f,moveV);
-
         
+
         rb.AddForce (movement * speed);
 
     }
@@ -47,9 +49,10 @@ public class PlayerController : MonoBehaviour {
 
             scoreCount = scoreCount + 1;
             SetCountText();
-            if (scoreCount>12)
+            if (scoreCount>1)
             {
                 winText.text = "You Win!";
+                speed = 0; 
             }
         }
 
